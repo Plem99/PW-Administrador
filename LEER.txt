@@ -20,7 +20,5 @@
 		-frontend(F_)
 		-backend(B_)
 
--Respaldo
--src
 -vendors
 etc
