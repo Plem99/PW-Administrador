@@ -14,18 +14,20 @@
                     <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
+                                <th>Username</th>
                                 <th>Nombre</th>
-                                <th>Apellido Paterno</th>
-                                <th>Apellido Materno</th>
-                                <th>Edad</th>
+                                <th>Apellidos</th>
+                                <th>Género</th>
                                 <th>Email</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
+                                <th>Monedas</th>
+                                <th>Facebook</th>
+                                <th>Twitch</th>
+                                <th>Youtube</th>
                                 <th>Fecha de Nacimiento</th>
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="tablaGamers">
                             <?php //include "../production/modulos/backend/B_tablaGamers.php" ?>
                         </tbody>
                     </table>

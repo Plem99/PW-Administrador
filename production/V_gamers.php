@@ -13,7 +13,7 @@
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-
+            <script src="../vendors/jquery/dist/jquery.min.js"></script>
             <title>Gamers</title>
             <?php include "./includes/header.html" ?>
         </head>
@@ -70,13 +70,14 @@
                                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Vista</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Tabla</a>
+                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick="gamersTable()">Tabla</a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
                                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                                    <div class="row">
-                                                        <?php include "./modulos/frontend/F_gamers.php"?>
+                                                    <div class="row" id="GamersVista">
+                                                        
+                                                        <?php //include "./modulos/frontend/F_gamers.php"?>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -102,6 +103,24 @@
 
             <?php include "./includes/scripts.html" ?>
         </body>
+        <script>
+        function gamersTable(){
+            $.ajax({
+                url: './modulos/backend/B_tablaGamers.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#tablaGamers').html(r);
+                }
+            });
+        }
+        $.ajax({
+            url: './modulos/backend/B_Gamers.php',
+            type: 'GET',
+            success: function (r) {
+                $('#GamersVista').html(r);
+            }
+        });
+        </script>
 
     </html>
     <?php

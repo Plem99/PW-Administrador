@@ -2,7 +2,7 @@
 //if(!isset($_SESSION)) {
 //    session_start();
 //}
-$db = new mysqli('127.0.0.1:33066',  'root', '','pw_proyectofinal');
+$db = new mysqli('ameb.tech',  'revoluxionAdmin', 'revoluxionPass','revoluxion_DB');
 if($db->connect_errno > 0){
     die('Unable to connect to database [' . $db->connect_error . ']');
 }

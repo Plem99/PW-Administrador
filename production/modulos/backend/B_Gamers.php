@@ -1,20 +1,26 @@
 <?php 
-	/*require_once 'conexion.php';
+	require_once 'conexion.php';
 	include "B_GamersCard.php"; 	
-	$sql = "SELECT idGamer, nombre, apePat, apeMat, genero, direccion, tel FROM tGamers";
+	//$sql = "SELECT idGamer, nombre, apePat, apeMat, genero, direccion, tel FROM tGamers";
+	$sql = "SELECT * FROM gamers";
 	$result = $db->query($sql);
 
 	if ($result->num_rows > 0) {
-	    //echo "<table id='datatable-buttons' class='table table-striped table-bordered' style='width:100%'>";
-	    //echo "<tr><th>Nombre</th><th>Hdec</th><th>Proteinas</th><th>Lipidos</th><th>Calorias</th></tr>";
-	    // output data of each row
+	    
 		$i=0;
 	    while($row = $result->fetch_assoc()) {
-	    	$_SESSION['idGamer'] = $row['idGamer'];
-	    	$valor[$i] = $_SESSION['idGamer']; 
+	    	$_SESSION['id'] = $row['id'];
+	    	$valor[$i] = $_SESSION['id']; 
 	    	//echo $valor[$i];
-	    	top();
-	        echo "<h2>" . $row["nombre"]. " ". $row['apePat']." ".$row['apeMat']."</h2><p><strong>" ."Genero: ". "</strong>". $row['genero'] ."</p><ul class='list-unstyled'>" . "<li><i class='fa fa-building'></i>". "Dirección: ". $row['direccion']. "<li>"."<li><i class='fa fa-phone'></i>". "Telefono: ". $row['tel']. "<li></ul>";
+	    	top($row['username']);
+	        echo "<h2>" . $row['name']. " ". $row['last_name']."</h2>".
+	        "<p><strong><i class='fa fa-male'></i> Genero: "."</strong>".$row['gender']."</p>".
+	        "<p><strong><i class='fa fa-google'></i> Email: "."</strong>".$row['email']."</p>".
+	        "<p><strong><i class='fa fa-usd'></i> Monedas: "."</strong>".$row['coins']."</p>".
+	        "<p><strong><i class='fa fa-facebook-square'></i> Facebook: "."</strong>".$row['facebook']."</p>".
+	        "<p><strong><i class='fa fa-twitch'></i> Twitch: "."</strong>".$row['twitch']."</p>".
+	        "<p><strong><i class='fa fa-twitter'></i> Twitter: "."</strong>".$row['twitter']."</p>".
+	        "<p><strong><i class='fa fa-youtube-play'></i> Youtube: "."</strong>".$row['youtube']."</p>";
 	        down($valor[$i]);
 	    }
 	    echo "</table>";
@@ -22,5 +28,5 @@
 	    echo "0 results";
 	}
 
-	$db->close();*/
+	$db->close();
  ?>

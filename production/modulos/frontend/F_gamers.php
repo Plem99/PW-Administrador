@@ -1,3 +1,3 @@
 
-<?php include "../production/modulos/backend/B_Gamers.php" ?>
+<?php //include "../production/modulos/backend/B_Gamers.php" ?>
 
