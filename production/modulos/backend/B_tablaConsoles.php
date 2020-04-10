@@ -4,13 +4,13 @@
     $sql = "SELECT c.id, c.serial, c.id_platform, p.name, p.image FROM consoles as c INNER JOIN platforms as p ON c.id_platform = p.id";
     $result = $db->query($sql);
     if (mysqli_num_rows($result) > 0) {
-                while($row = mysqli_fetch_array($result)){
+                while($row = $result->fetch(PDO::FETCH_ASSOC)){
                     echo "<div class='col-md-55'>
                     <div class='thumbnail'>
                       <div class='image view view-first'>
                         <img style='width: 100%; display: block; border-radius: 7px;' src='././images/consoles/".$row[4].".jpg' alt='image' />
                         <div class='mask'>
-                          <p>
+                          <p>onsoles.php
                             ".$row['name']."
                           </p>
                           <div class='tools tools-bottom'>
