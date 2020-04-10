@@ -76,7 +76,7 @@
                                             <div class="tab-content" id="myTabContent">
                                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="row" id="GamersVista">
-                                                        
+
                                                         <?php //include "./modulos/frontend/F_gamers.php"?>
                                                     </div>
                                                 </div>
