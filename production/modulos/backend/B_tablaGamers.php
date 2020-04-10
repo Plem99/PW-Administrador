@@ -4,9 +4,9 @@
 	$sql = "SELECT * FROM gamers";
 	$result = $db->query($sql);
 
-	if ($result->num_rows > 0) {
+	if ($result = $db->query($sql)) {
 
-	    while($row = $result->fetch_assoc()) {
+	    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 	        echo "<tr>
 		        	<td>".$row["username"]."</td>
 		        	<td>".$row["name"]."</td>
@@ -25,5 +25,5 @@
 	    echo "0 results";
 	}
 
-	$db->close();
+	$result->closeCursor();
  ?>
