@@ -167,7 +167,7 @@
             if(datos && ( (birthdate > "2010-01-01") || (birthdate < "1950-01-01") ) ){
                 //alert("Te pasaste");
                 Swal.fire(
-                  'Cumpleaños Inválido',
+                  'Fecha de Nacimiento Inválida',
                   'Porfavor ingresa una fecha válida',
                   'question'
                 )
@@ -232,7 +232,9 @@
                 });
               }
             })
-            
+        }
+        function btnVerPerfil (id){
+            $(location).attr('href','./indexGamer.php?var='+id);
         }
         </script>
 

@@ -24,8 +24,12 @@
 		        	<td>".$row["coins"]."</td>
 		        	<td>".$row["birthdate"]."</td>
 		        	<td>".
-		        	"<button id='btnEliminar' onclick='btnEliminar(".$valor[$i].")' class='btn  btn-danger btnEliminar' >"."<i class='fa fa-times'></i>". " Eliminar".
-		        	"</button>".
+		        	"<div style='display:flex;'>".
+			        	"<button id='btnVerPerfil' onclick='btnVerPerfil(".$valor[$i].")' class='btn  btn-success btnVerPerfil' >"."<i class='fa fa-pencil'></i>". " Ver Perfil".
+			        	"</button>".
+			        	"<button id='btnEliminar' onclick='btnEliminar(".$valor[$i].")' class='btn  btn-danger btnEliminar' >"."<i class='fa fa-times'></i>". " Eliminar".
+			        	"</button>".
+			        "<div>".
 		        	"</td>
 
 	        	</tr>";
