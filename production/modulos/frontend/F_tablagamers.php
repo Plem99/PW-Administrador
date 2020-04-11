@@ -20,9 +20,6 @@
                                 <th>Género</th>
                                 <th>Email</th>
                                 <th>Monedas</th>
-                                <th>Facebook</th>
-                                <th>Twitch</th>
-                                <th>Youtube</th>
                                 <th>Fecha de Nacimiento</th>
                                 <th>Accion</th>
                             </tr>

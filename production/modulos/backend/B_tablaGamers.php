@@ -22,9 +22,6 @@
 		        	<td>".$genero."</td>
 		        	<td>".$row["email"]."</td>
 		        	<td>".$row["coins"]."</td>
-		        	<td>".$row["facebook"]."</td>
-		        	<td>".$row["twitch"]."</td>
-		        	<td>".$row["youtube"]."</td>
 		        	<td>".$row["birthdate"]."</td>
 		        	<td>".
 		        	"<button id='btnEliminar' onclick='btnEliminar(".$valor[$i].")' class='btn  btn-danger btnEliminar' >"."<i class='fa fa-times'></i>". " Eliminar".
