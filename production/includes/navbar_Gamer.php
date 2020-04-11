@@ -33,7 +33,6 @@
                 <!--Promocion-->
                 <li><a href=""><i class="fa fa-calendar-o"></i> Promocion <span class="fa fa-chevron"></span></a>
                 </li>
-
             </ul>
         </div>
 
