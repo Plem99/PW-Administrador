@@ -28,13 +28,10 @@
                 <li><a href="./index.php"><i class="fa fa-reply"></i> Atras  <span class="fa fa-chevron"></span></a>
                 </li>
                 <!--Perfil-->
-                <li><a href="" ><i class="fa fa-male"></i> Perfil de Gamer  <span class="fa fa-chevron"></span></a>
+                <li><a href=<?php echo "./indexGamer.php?var=$id" ?> ><i class="fa fa-male"></i> Perfil de Gamer  <span class="fa fa-chevron"></span></a>
                 </li>
                 <!--Torneos-->
-                <li><a href="" ><i class="fa fa-home"></i> Torneas Registrado  <span class="fa fa-chevron"></span></a>
-                </li>
-                <!--Dulceria-->
-                <li><a href=""><i class="fa fa-pencil-square-o"></i> Dulceria <span class="fa fa-chevron"></span></a>
+                <li><a href="" ><i class="fa fa-home"></i> Torneos Registrado  <span class="fa fa-chevron"></span></a>
                 </li>
                 <!--Promocion-->
                 <li><a href=""><i class="fa fa-calendar-o"></i> Promocion <span class="fa fa-chevron"></span></a>

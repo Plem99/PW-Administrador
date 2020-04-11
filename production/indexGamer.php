@@ -1,9 +1,9 @@
 <?php
+    //Obtener id
     $id = $_GET['var'];
     include ('./modulos/backend/B_seleccionarGamer.php');
     session_start();
-    //Obtener id
-  
+    
   if (isset($_SESSION['username']) && $_SESSION['username']!='') {
 ?>
     <!DOCTYPE html>
@@ -37,7 +37,7 @@
 
                                     <!--Title left-->
                                     <div class="title_left">
-                                        <h3>Inicio</h3>
+                                        <h3>Perfil</h3>
                                     </div>
 
                                 </div>
