@@ -31,13 +31,13 @@
         <div class="login_wrapper">
             <div class="animate form login_form">
                 <section class="login_content">
-                    <form method="post" action="./production/modulos/backend/login.php">
+                    <form method="post" action="./production/modulos/backend/B_login.php">
                         <h1>Iniciar Sesión</h1>
                         <div>
-                            <input type="text" class="form-control" placeholder="Nombre de Usuario" required="" name="usuario" />
+                            <input type="text" class="form-control" placeholder="Nombre de Usuario" required="" name="username" />
                         </div>
                         <div>
-                            <input type="password" class="form-control" placeholder="Contraseña" required="" name="contrasena" />
+                            <input type="password" class="form-control" placeholder="Contraseña" required="" name="password" />
                         </div>
                         <div>
                             <button type="submit" class="btn btn-default">Iniciar sesión</button>
@@ -65,7 +65,7 @@
 
             <div id="register" class="animate form registration_form">
                 <section class="login_content">
-                    <form method="post" action="./production/modulos/backend/loginReg.php">
+                    <form method="post" action="#">
                         <h1>Crear Cuenta</h1>
                         <div>
                             <input type="text" class="form-control" placeholder="Nombre/s" required="" name="nombre" />

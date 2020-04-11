@@ -24,6 +24,7 @@
                                 <th>Twitch</th>
                                 <th>Youtube</th>
                                 <th>Fecha de Nacimiento</th>
+                                <th>Accion</th>
                             </tr>
                         </thead>
 

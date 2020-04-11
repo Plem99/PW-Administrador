@@ -16,10 +16,10 @@ function down($valor){
 	echo "<div class='col-sm-6 emphasis'>";
 	echo "</div>";
 	echo "<div style='display: flex;' class='col-sm-12 emphasis'>";
-	echo "<a type='button' class='btn  btn-success' href='./Gamer.php?var=".$valor."'>".
-		 "<i class='fa fa-pencil'></i>". " Modificar"."</a>";
-	echo "<a type='button' class='btn  btn-danger' href='./Gamer.php?var=".$valor."'>".
-		 "<i class='fa fa-times'></i>". " Eliminar"."</a>";
+	echo "<a type='button'class='btn btn-success' href='./V_gamer/indexGamer.php?var=".$valor."'>".
+		 "<i class='fa fa-pencil'></i>". " Ver Perfil"."</a>";
+	echo "<button onclick='btnEliminar(".$valor.")' class='btn  btn-danger'>".
+		 "<i class='fa fa-times'></i>". " Eliminar"."</button>";
 	echo "</div>";
 	echo "</div>";
 	echo "</div>";

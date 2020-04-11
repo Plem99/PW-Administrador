@@ -1,6 +1,6 @@
 <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-        <a href="index.php" class="site_title"><span>Bariatria</span></a>
+        <a href="../index.php" class="site_title"><span>PW_Final</span></a>
     </div>
 
     <div class="clearfix"></div>
@@ -8,7 +8,7 @@
     <!-- menu profile quick info -->
     <div class="profile clearfix">
         <div class="profile_pic">
-            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+            <img src="../images/img.jpg" alt="..." class="img-circle profile_img">
         </div>
         <div class="profile_info">
             <!--<span>Bienvenido,</span>-->
@@ -25,19 +25,19 @@
             <h3>General</h3>
             <ul class="nav side-menu">
                 <!--Inicio-->
-                <li><a href="index.php"><i class="fa fa-reply"></i> Atras  <span class="fa fa-chevron"></span></a>
+                <li><a href="../index.php"><i class="fa fa-reply"></i> Atras  <span class="fa fa-chevron"></span></a>
                 </li>
                 <!--Perfil-->
-                <li><a href=<?php echo "indexPaciente.php?var=$variable" ?> ><i class="fa fa-male"></i> Perfil de Gamer  <span class="fa fa-chevron"></span></a>
+                <li><a href="" ><i class="fa fa-male"></i> Perfil de Gamer  <span class="fa fa-chevron"></span></a>
                 </li>
                 <!--Torneos-->
-                <li><a href=<?php echo "datosGenerales.php?var=$variable" ?> ><i class="fa fa-home"></i> Torneas Registrado  <span class="fa fa-chevron"></span></a>
+                <li><a href="" ><i class="fa fa-home"></i> Torneas Registrado  <span class="fa fa-chevron"></span></a>
                 </li>
                 <!--Dulceria-->
-                <li><a href=<?php echo "V_misMediciones.php?var=$variable" ?>><i class="fa fa-pencil-square-o"></i> Dulceria <span class="fa fa-chevron"></span></a>
+                <li><a href=""><i class="fa fa-pencil-square-o"></i> Dulceria <span class="fa fa-chevron"></span></a>
                 </li>
                 <!--Promocion-->
-                <li><a href=<?php echo "V_dietas.php?var=$variable" ?>><i class="fa fa-calendar-o"></i> Mis Dietas <span class="fa fa-chevron"></span></a>
+                <li><a href=""><i class="fa fa-calendar-o"></i> Promocion <span class="fa fa-chevron"></span></a>
                 </li>
 
             </ul>
