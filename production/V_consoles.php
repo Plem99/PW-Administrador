@@ -15,6 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="../vendors/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <title>Consolas</title>
         <?php include "./includes/header.html" ?>
     </head>
@@ -51,14 +52,12 @@
                                         <ul class="nav navbar-right panel_toolbox">
                                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                             </li>
-                                            <!-- <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a></li> -->
-                                            <!-- <li><a class="close-link"><i class="fa fa-close"></i></a></li> -->
                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registrarConsola">
                                       Registrar Consola
                                     </button>
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal fade" id="registrarConsola" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
@@ -72,15 +71,15 @@
                                                <form>
                                                   <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Numero de consola:</label>
-                                                    <input type="number" class="form-control" id="number">
+                                                    <input type="number" class="form-control" id="numeroConsole">
                                                   </div>
                                                   <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Serial</label>
-                                                    <input type="text" class="form-control" id="serial">
+                                                    <input type="text" class="form-control" id="serialConsole">
                                                   </div>
                                                     <div class="form-group">
-                                                    <label for="inputState">Plataforma</label>
-                                                        <select id="inputState" class="form-control">
+                                                    <label for="plataformaConsole">Plataforma</label>
+                                                        <select id="plataformaConsole" class="form-control">
                                                             <?php include 'modulos/backend/B_listaPlatforms.php'; ?>
                                                         </select>
                                                     </div>
@@ -89,7 +88,7 @@
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarConsola">Cancelar</button>
-                                            <button type="button" class="btn btn-primary" id="guardarConsola">Guardar Registro</button>
+                                            <button type="button" class="btn btn-primary" id="guardarConsola"f>Guardar Registro</button>
                                           </div>
                                         </div>
                                       </div>
@@ -111,28 +110,28 @@
                                           </div>
                                           <div class="modal-body">
                                             <!-- contenido de modal Registrar plataforma -->
-                                               <form>
+                                               <form action="modulos/backend/B_registrarPlatforms.php" method="POST" enctype="multipart/form-data" id="registrarPlataforma">
                                                   <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Nombre</label>
-                                                    <input type="text" class="form-control" id="nombrePlatform">
+                                                    <input type="text" classbutton="form-control" id="nombrePlatform">
                                                   </div>
                                                   <div class="form-group">
 
-                                                 <label for="file">Seleccionar imagen</label>
-                                                    <input type="file" name="file">
+                                                 <label for="FileImage">Seleccionar imagen</label>
+                                                    <input type="file" name="FileImage" id="imagenPlatform">
                                                     <p class="help-block">Solo archivos jpg,jpeg,png and gif con un tamaño máximo de 1 MB.</p>
                                                   </div>
+                                                  <button class="btn btn-primary" id="guardarConsola">Subir Archivo</button>
+
                                                 </form>
                                             <!-- contenido de modal Registrar consola -->
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarConsola">Cancelar</button>
-                                            <button type="button" class="btn btn-primary" id="guardarConsola">Guardar Registro</button>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
-
                                         </ul>
                                         <div class="clearfix"></div>
                                     </div>
@@ -149,8 +148,6 @@
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                 <div class="row" id="ConsolesVista">
-
-
                                                     <?php //include "./modulos/frontend/F_consoles.php"?>
                                                 </div>
                                             </div>
@@ -186,13 +183,41 @@
         });
 
         $.ajax({
-            url: 'modulos/backend/B_tablaPlatforms.php',
+            url: 'modulos/backend/B_tablaPlatforms.php'﻿,
             type: 'GET',
             success: function (r) {
                 $('#PlatformsVista').html(r);
             }
         });
-    </script>
+function registrarConsola(){
+  var numero = $("#numeroConsole").val();
+  var serial = $("#serialConsole").val();
+  var plataforma = $("#plataformaConsole").val();
+            $.ajax({
+            url: 'modulos/backend/B_registrarConsoles.php',
+            type: 'POST',
+            data:{
+                  numeroC: numero,
+                  serialC: serial,
+                  plataformaC: plataforma
+                },
+            success: function(data){
+                Swal.fire({
+                icon: 'success',
+                title: 'BIEN HECHO PENDEJO',
+                text: data
+              });
+            },
+            error: function(data){
+              Swal.fire({
+                icon: 'warning',
+                title: 'Error',
+                text:data,
+              });
+            }
+        });
+  }
+</script>
 
     </html>
     <?php
