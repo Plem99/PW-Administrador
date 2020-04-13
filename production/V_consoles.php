@@ -2,8 +2,8 @@
   //$variable = $_GET['var'];
   //include ('./modulos/backend/conexion.php');
   //include ('./modulos/backend/selectDietas.php');
-  //session_start();
-  //if (isset($_SESSION['usuario']) && $_SESSION['usuario']!='') {
+  session_start();
+  if (isset($_SESSION['username']) && $_SESSION['username']!='') {
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -49,8 +49,7 @@
                                     <div class="x_title">
                                         <h2>Consolas y Plataformas</h2>
                                         <ul class="nav navbar-right panel_toolbox">
-                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
+                                            
                                             <!-- <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a></li> -->
                                             <!-- <li><a class="close-link"><i class="fa fa-close"></i></a></li> -->
                                    <!-- Button trigger modal -->
@@ -132,7 +131,8 @@
                                         </div>
                                       </div>
                                     </div>
-
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
                                         </ul>
                                         <div class="clearfix"></div>
                                     </div>
@@ -196,7 +196,7 @@
 
     </html>
     <?php
-  //}else{
-  //  header("Location: ../index.php");
-  //}
+  }else{
+    header("Location: ../index.php");
+  }
  ?>

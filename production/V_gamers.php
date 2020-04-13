@@ -209,8 +209,8 @@
               text: "No podras revertirlo!",
               icon: 'warning',
               showCancelButton: true,
-              confirmButtonColor: '#2CC11D',
-              cancelButtonColor: '#d33',
+              confirmButtonColor: '#d33',
+                  cancelButtonColor: '#2CC11D',
               confirmButtonText: 'Si, Eliminar!'
             }).then((result) => {
               if (result.value) {

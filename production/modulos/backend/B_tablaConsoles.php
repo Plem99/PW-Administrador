@@ -8,7 +8,7 @@
                     echo "<div class='col-md-55'>
                     <div class='thumbnail'>
                       <div class='image view view-first'>
-                        <img style='width: 100%; display: block; border-radius: 7px;' src='././images/consoles/".$row['image']."' alt='image' />
+                        <img style='width: 100%; display: block; border-radius: 7px;' src='../../assets/img/platforms/".$row['image']."' alt='image' />
                         <div class='mask'>
                           <p>
                             ".$row['name']." - ".$row['number']."

@@ -9,7 +9,7 @@ function top($valor){
 function down($valor){
 	echo "</div>";
 	echo "<div class='right col-sm-5 text-center'>";
-	echo "<img src='images/img.jpg' class='img-circle img-fluid'>";
+	echo "<img src='../../assets/img/profiles/img.jpg' class='img-circle img-fluid'>";
 	echo "</div>";
 	echo "</div>";
 	echo "<div class='bottom text-center'>";
