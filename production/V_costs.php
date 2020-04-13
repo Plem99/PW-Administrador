@@ -1,8 +1,4 @@
-<?php
-  //include ('./modulos/backend/conexion.php');
-  //session_start();
-  //if (isset($_SESSION['usuario']) && $_SESSION['usuario']!='') {
-?>
+
     <!DOCTYPE html>
     <html lang="en">
     <?php include "./includes/icono.html" ?>
@@ -51,15 +47,9 @@
                                             <ul class="nav navbar-right panel_toolbox">
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>
-                                                <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#">Settings 1</a>
-                                                        <a class="dropdown-item" href="#">Settings 2</a>
-                                                    </div>
-                                                </li>
                                                 <li><a class="close-link"><i class="fa fa-close"></i></a>
                                                 </li>
+
                                             </ul>
                                             <div class="clearfix"></div>
                                         </div>
@@ -67,28 +57,42 @@
 
                                             <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Consolas</a>
+                                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#consolas" role="tab" aria-controls="home" aria-selected="true" >Consolas</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Accesoriaos</a>
+                                                    <a class="nav-link" id="accesorios-tab" data-toggle="tab" href="#accesorios" role="tab" aria-controls="accesorios" aria-selected="false" onclick="getAccesorios()">Accesorios</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="promociones-tab" data-toggle="tab" href="#promociones" role="tab" aria-controls="promociones" aria-selected="false" onclick="getPromociones()">Promociones</a>
                                                 </li>
                                             </ul>
-                                            <div class="tab-content" id="myTabContent">
-                                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                                    <div class="row" id="RetasActivas">
 
-                                                        <!-- Cambiar por mi frontend -->
-                                                        <?php //include "./modulos/frontend/F_gamers.php"?>
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="consolas" role="tabpanel" aria-labelledby="home-tab">
+                                                    <div class="row">
+                                                        <!-- Cambiar por mi frontend para precios consolas-->
+                                                        <?php include "./modulos/frontend/F_costoConsolas.php"?>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                                                <!--  -->
+                                                <div class="tab-pane fade" id="accesorios" role="tabpanel" aria-labelledby="accesorios-tab">
+                                                    <div class="row" >
+                                      <!-- Cambiar por mi frontend para precios accesorios-->
+                                                        <?php include "./modulos/frontend/F_costoAccesorios.php"?>
+                                                    </div>
+                                                </div>
+
+                                                <!--  -->
+                                                <div class="tab-pane fade" id="promociones" role="tabpanel" aria-labelledby="promociones-tab">
                                                     <div class="row">
 
-                                                        <!-- Cambiar por mi frontend -->
-                                                        <?php include "./modulos/frontend/F_tablagamers.php"?>
+                                                        <!-- Cambiar por mi frontend para promociones-->
+                                                        <?php include "./modulos/frontend/F_promociones.php"?>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -109,27 +113,70 @@
         <script>
 
             //Cambiar por mi back
-        function gamersTable(){
+        function getPlatforms(){
             $.ajax({
-                url: './modulos/backend/B_tablaGamers.php',
+                url: './modulos/backend/B_plataforms2Costs.php',
                 type: 'GET',
                 success: function (r) {
-                    $('#tablaGamers').html(r);
+                    $('#platforma').html(r);
                 }
             });
         }
         $.ajax({
-            url: './modulos/backend/B_Gamers.php',
+            url: './modulos/backend/B_costoConsolas.php',
             type: 'GET',
             success: function (r) {
-                $('#GamersVista').html(r);
+                $('#tablaCostoConsolas').html(r);
             }
+        });
+
+        function getPromociones() {
+                $.ajax({
+                url: './modulos/backend/B_promociones.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#tablaPromociones').html(r);
+                }
+            });
+        }
+
+        function getAccesorios() {
+                $.ajax({
+                url: './modulos/backend/B_costoAccesorios.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#tablaCostoAccesorios').html(r);
+                }
+            });
+        }
+
+        
+        
+
+        $('#setDatos').click(function(){
+            costoHoraV = $('#costoHora').val();
+             cantidadHorasV = $('#cantidadHoras').val();
+             monedasJugadorV = $('#monedasJugador').val();
+             monedasCostoV = $('#monedasCosto').val();
+             platformaV = $('#platforma').val();
+
+            if (costoHoraV != '' && cantidadHorasV != '' && monedasJugadorV != '' && monedasCostoV != '' && platformaV != '' ){
+                  $.ajax({
+                      url: './modulos/backend/B_insertCostoConsola.php',
+                      type: 'POST',
+                      data:{
+                            costoMXN: costoHoraV,
+                            horas: cantidadHorasV,
+                            coinsplayer: monedasJugadorV,
+                            costCoin: monedasCostoV,
+                            plataformaValor: platformaV
+                          },
+                      success: function(data){
+                          alert('Costo de hora registrado');
+                      }
+                  });
+          }
         });
         </script>
 
     </html>
-    <?php
-  //}else{
-  //  header("Location: ../index.php");
-  //}
- ?>

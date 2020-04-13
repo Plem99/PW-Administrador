@@ -1,8 +1,4 @@
-<?php
-  //include ('./modulos/backend/conexion.php');
-  //session_start();
-  //if (isset($_SESSION['usuario']) && $_SESSION['usuario']!='') {
-?>
+
     <!DOCTYPE html>
     <html lang="en">
     <?php include "./includes/icono.html" ?>
@@ -14,7 +10,7 @@
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <script src="../vendors/jquery/dist/jquery.min.js"></script>
-            <title>Rentas</title>
+            <title>Tarifas y Costos</title>
             <?php include "./includes/header.html" ?>
         </head>
 
@@ -32,7 +28,7 @@
                             <div class="">
                                 <div class="page-title">
                                     <div class="title_left">
-                                        <h3>Rentas</h3>
+                                        <h3>Tarifas y Costos</h3>
                                     </div>
 
                                     <div class="title_right">
@@ -47,19 +43,13 @@
                                 <div class="col-md-12 col-sm-6">
                                     <div class="x_panel">
                                         <div class="x_title">
-                                            <h2> Rentas</h2>
+                                            <h2> Tarifas y Costos</h2>
                                             <ul class="nav navbar-right panel_toolbox">
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>
-                                                <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#">Settings 1</a>
-                                                        <a class="dropdown-item" href="#">Settings 2</a>
-                                                    </div>
-                                                </li>
                                                 <li><a class="close-link"><i class="fa fa-close"></i></a>
                                                 </li>
+
                                             </ul>
                                             <div class="clearfix"></div>
                                         </div>
@@ -67,28 +57,32 @@
 
                                             <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Activas</a>
+                                                    <a class="nav-link active" id="enCurso-tab" data-toggle="tab" href="#enCurso" role="tab" aria-controls="enCurso" aria-selected="true" >Rentas en curso</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick="gamersTable()">Todas</a>
+                                                    <a class="nav-link" id="todas-tab" data-toggle="tab" href="#todas" role="tab" aria-controls="todas" aria-selected="false" onclick="getAccesorios()">Accesorios</a>
                                                 </li>
                                             </ul>
+                                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNuevaRenta">Nueva renta</button>
+                                                 <div id="nuevaRenta"></div>
                                             <div class="tab-content" id="myTabContent">
-                                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                                    <div class="row" id="RetasActivas">
+                                                <div class="tab-pane fade show active" id="enCurso" role="tabpanel" aria-labelledby="enCurso-tab">
+                                                    <div class="row">
+                                                        <!-- Cambiar por mi frontend para precios consolas-->
 
-                                                        <!-- Cambiar por mi frontend -->
-                                                        <?php //include "./modulos/frontend/F_gamers.php"?>
+                                                        <?php include "./modulos/backend/B_rentasActivas.php"?>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                                    <div class="row">
 
-                                                        <!-- Cambiar por mi frontend -->
-                                                        <?php include "./modulos/frontend/F_tablagamers.php"?>
+                                                <!--  -->
+                                                <div class="tab-pane fade" id="todas" role="tabpanel" aria-labelledby="todas-tab">
+                                                    <div class="row" >
+                                      <!-- Cambiar por mi frontend para precios accesorios-->
+                                                        <?php //include "./modulos/frontend/F_costoAccesorios.php"?>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -109,27 +103,24 @@
         <script>
 
             //Cambiar por mi back
-        function gamersTable(){
+        function getPlatforms(){
             $.ajax({
-                url: './modulos/backend/B_tablaGamers.php',
+                url: './modulos/backend/B_rentasActivas.php',
                 type: 'GET',
                 success: function (r) {
-                    $('#tablaGamers').html(r);
+                    $('#platforma').html(r);
                 }
             });
         }
+
+
         $.ajax({
-            url: './modulos/backend/B_Gamers.php',
-            type: 'GET',
-            success: function (r) {
-                $('#GamersVista').html(r);
-            }
-        });
+                url: './modulos/frontend/F_insertRenta.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#nuevaRenta').html(r);
+                }
+            });
         </script>
 
     </html>
-    <?php
-  //}else{
-  //  header("Location: ../index.php");
-  //}
- ?>

@@ -5,10 +5,10 @@
 	$sql = "SELECT * FROM gamers";
 	$result = $db->query($sql);
 
-	if ($result->num_rows > 0) {
+	if ($result = $db->query($sql)) {
 	    
 		$i=0;
-	    while($row = $result->fetch_assoc()) {
+	    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 	    	$_SESSION['id'] = $row['id'];
 	    	$valor[$i] = $_SESSION['id']; 
 	    	//echo $valor[$i];
@@ -27,6 +27,5 @@
 	} else {
 	    echo "0 results";
 	}
-
-	$db->close();
+	$result->closeCursor();
  ?>

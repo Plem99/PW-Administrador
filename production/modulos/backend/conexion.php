@@ -1,9 +1,7 @@
 <?php
-//if(!isset($_SESSION)) {
-//    session_start();
-//}
-$db = new mysqli('ameb.tech',  'revoluxionAdmin', 'revoluxionPass','revoluxion_DB');
-if($db->connect_errno > 0){
-    die('Unable to connect to database [' . $db->connect_error . ']');
+try{
+    $db = new PDO("mysql:host=ameb.tech;dbname=revoluxion_DB", "revoluxionAdmin", "revoluxionPass");
+}catch (PDOException $e){
+    print "¡Error!: " . $e->getMessage() . "<br/>";
+    die();
 }
-mysqli_query($db,"SET NAMES 'utf8'");

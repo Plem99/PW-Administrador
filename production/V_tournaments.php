@@ -80,10 +80,16 @@
                                                         <?php include "./modulos/frontend/F_tournaments.php"?>
                                                     </div>
                                                 </div>
+
+
+                                             
+
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+    
                             </div>
                         </div>
                         <!-- /page content -->
@@ -103,20 +109,25 @@
             //por mi script de tabla de todos los Torneos 
         function allTorunaments(){
             $.ajax({
-                url: '../modulos/backend/B_allTournaments.php',
+                url: './modulos/backend/B_allTournaments.php',
                 type: 'GET',
                 success: function (r) {
                     $('#tablaTorneos').html(r);
                 }
             });
         }
-        $.ajax({
-            url: '../modulos/backend/B_Gamers.php',
-            type: 'GET',
-            success: function (r) {
-                $('#GamersVista').html(r);
-            }
-        });
+
+        // function getAllInfoTournament(){
+        //     $.ajax({
+        //         url: './modulos/backend/B_allInfoTournamentID.php',
+        //         type: 'GET',
+        //         success: function (r) {
+        //             $('#tablaTorneos').html(r);
+        //         }
+        //     });
+        // }
+
+
         </script>
 
     </html>
