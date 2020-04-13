@@ -72,7 +72,7 @@
                                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#datosGenerales" role="tab" aria-controls="home" aria-selected="true">Datos Generales</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#torneos" role="tab" aria-controls="profile" aria-selected="false">Torneos</a>
+                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#torneos" role="tab" aria-controls="profile" aria-selected="false" onclick="gamersTableTorneo(<?php  echo $id ?>)">Torneos</a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
@@ -84,7 +84,7 @@
                                                 </div>
                                                 <div class="tab-pane fade" id="torneos" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="row">
-                                                        <?php //include "./modulos/frontend/F_tablagamers.php"?>
+                                                        <?php include "./modulos/frontend/F_tablagamersTorneos.php"?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,6 +175,16 @@
                     });
                 }
             }
+            function gamersTableTorneo(id){
+                $.ajax({
+                    url: './modulos/backend/B_tablagamersTorneos.php',
+                    type: 'POST',
+                    data: {idV: id},
+                    success: function (r) {
+                        $('#tablaGamersTorneo').html(r);
+                    }
+                });
+        }
         </script>
     </html>
     <?php

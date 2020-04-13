@@ -14,7 +14,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="../vendors/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <title>Consolas</title>
         <?php include "./includes/header.html" ?>
     </head>
@@ -71,7 +71,7 @@
                                                <form>
                                                   <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Numero de consola:</label>
-                                                    <input type="number" class="form-control" id="number">
+                                                    <input type="number" class="form-control" id="numConsola">
                                                   </div>
                                                   <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Serial</label>
@@ -79,8 +79,8 @@
                                                   </div>
                                                     <div class="form-group">
                                                     <label for="inputState">Plataforma</label>
-                                                        <select id="inputState" class="form-control">
-                                                            <?php include 'modulos/backend/B_listaPlatforms.php'; ?>
+                                                        <select id="plataforma" class="form-control">
+                                                            <?php //include 'modulos/backend/B_listaPlatforms.php'; ?>
                                                         </select>
                                                     </div>
                                                 </form>
@@ -88,7 +88,7 @@
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarConsola">Cancelar</button>
-                                            <button type="button" class="btn btn-primary" id="guardarConsola">Guardar Registro</button>
+                                            <button type="button" onclick="agregarConsola()" class="btn btn-primary" id="guardarConsola">Guardar Registro</button>
                                           </div>
                                         </div>
                                       </div>
@@ -118,7 +118,7 @@
                                                   <div class="form-group">
 
                                                  <label for="file">Seleccionar imagen</label>
-                                                    <input type="file" name="file">
+                                                    <input id="nombreImg" type="file" name="file">
                                                     <p class="help-block">Solo archivos jpg,jpeg,png and gif con un tamaño máximo de 1 MB.</p>
                                                   </div>
                                                 </form>
@@ -126,7 +126,7 @@
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarConsola">Cancelar</button>
-                                            <button type="button" class="btn btn-primary" id="guardarConsola">Guardar Registro</button>
+                                            <button onclick="agregarPlataforma()" type="button" class="btn btn-primary" id="guardarConsola">Guardar Registro</button>
                                           </div>
                                         </div>
                                       </div>
@@ -140,10 +140,10 @@
 
                                         <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Consolas</a>
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" onclick="tablaConsoles()" aria-selected="true">Consolas</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Plataformas</a>
+                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" onclick="tablaPlatforms()" aria-selected="false">Plataformas</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content" id="myTabContent">
@@ -184,14 +184,192 @@
                 $('#ConsolesVista').html(r);
             }
         });
-
         $.ajax({
-            url: 'modulos/backend/B_tablaPlatforms.php',
+            url: 'modulos/backend/B_listaPlatforms.php',
             type: 'GET',
             success: function (r) {
-                $('#PlatformsVista').html(r);
+                $('#plataforma').html(r);
             }
         });
+        function tablaConsoles(){
+          $.ajax({
+              url: 'modulos/backend/B_tablaConsoles.php',
+              type: 'GET',
+              success: function (r) {
+                  $('#ConsolesVista').html(r);
+              }
+          });
+        }
+        function tablaPlatforms(){
+          $.ajax({
+              url: 'modulos/backend/B_tablaPlatforms.php',
+              type: 'GET',
+              success: function (r) {
+                  $('#PlatformsVista').html(r);
+              }
+          });
+        }
+        function agregarConsola(){
+            var datos = false;
+            var numConsola = $('#numConsola').val();
+            var serial = $('#serial').val();
+            var plataforma = $('#plataforma').val();
+            if(numConsola!=''&&serial!=''&&plataforma!=''){
+                datos=true;
+            }else{
+                Swal.fire(
+                  'Ingresa todos los campos necesarios',
+                  'Porfavor ingresa los campos necesarios',
+                  'question'
+                )
+            }
+            if(datos){
+                $.ajax({
+                    url: './modulos/backend/B_nuevaConsola.php',
+                    data: {
+                        numConsolaV: numConsola,
+                        serialV: serial,
+                        plataformaV: plataforma
+                        },
+                    type: 'POST',
+                    success: function () {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Consola Creada',
+                            text: 'Consola Creada Correctamente.'
+                        });
+                        tablaConsoles();
+                    }
+                });
+            }
+        }
+        function agregarPlataforma(){
+            var nombrePlatform = $('#nombrePlatform').val();
+            var nombreImg = $('#nombreImg').val().split('\\').pop();
+            if(nombrePlatform!='' && nombreImg!=''){
+                    $.ajax({
+                        url: './modulos/backend/B_nuevaPlataforma.php',
+                        data: {
+                            nombrePlatformV: nombrePlatform,
+                            nombreImgV: nombreImg
+                            },
+                        type: 'POST',
+                        success: function () {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Plataforma Creada',
+                                text: 'Plataforma Creada Correctamente.'
+                            });
+                            tablaPlatforms();
+                        }
+                    });
+                }else{
+                    Swal.fire(
+                      'Ingrese todos los datos',
+                      'Porfavor ingresa todos los datos',
+                      'question'
+                    )
+                }
+            }
+      function btnEliminarConsola (id){
+                var idEliminar = id;
+                Swal.fire({
+                  title: 'Estas seguro que deseas eliminar?',
+                  text: "No podras revertirlo!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#d33',
+                  cancelButtonColor: '#2CC11D',
+                  confirmButtonText: 'Si, Eliminar!'
+                }).then((result) => {
+                  if (result.value) {
+                    $.ajax({
+                        url: './modulos/backend/B_eliminarConsole.php',
+                        data: {
+                            idEliminarV: idEliminar
+                        },
+                        type: 'POST',
+                        success: function () {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Consola Eliminada',
+                                text: 'Consola Eliminada Correctamente.'
+                            });
+                            tablaConsoles();
+                        }
+                    });
+                  }
+                })
+            }
+            function btnEliminarPlataforma (id){
+                var idEliminar = id;
+                Swal.fire({
+                  title: 'Estas seguro que deseas eliminar?',
+                  text: "No podras revertirlo!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#d33',
+                  cancelButtonColor: '#2CC11D',
+                  confirmButtonText: 'Si, Eliminar!'
+                }).then((result) => {
+                  if (result.value) {
+                    $.ajax({
+                        url: './modulos/backend/B_eliminarPlatform.php',
+                        data: {
+                            idEliminarV: idEliminar
+                        },
+                        type: 'POST',
+                        success: function () {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Plataforma Eliminada',
+                                text: 'Plataforma Eliminada Correctamente.'
+                            });
+                            tablaPlatforms();
+                        }
+                    });
+                  }
+                })
+            }
+        function btnActualizarPlataforma(id){
+          var idModal = '#actualizarPlataforma' + id;
+          $(idModal).modal('show');
+        }
+        function actualizarPlataforma(id){
+          var idModal = '#actualizarPlataforma' + id;
+                var idtituloPlataformaActualizar = '#tituloPlataformaActualizar' + id;
+                var tituloPlataformaActualizar = $(idtituloPlataformaActualizar).val();
+                var idimagenPlataformaActualizar = '#imagenPlataformaActualizar' + id;
+                var imagenPlataformaActualizar = $(idimagenPlataformaActualizar).val().split('\\').pop();
+                var idVal = id;
+
+                if(tituloPlataformaActualizar!='' && imagenPlataformaActualizar!=''){
+                    $.ajax({
+                        url: './modulos/backend/B_actualizarPlataforma.php',
+                        data: {
+                            idV: idVal,
+                            tituloPlataformaActualizarV: tituloPlataformaActualizar,
+                            imagenPlataformaActualizarV: imagenPlataformaActualizar
+                            },
+                        type: 'POST',
+                        success: function () {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Plataforma Actualizada',
+                                text: 'Plataforma Actualizada Correctamente.'
+                            });
+                            tablaPlatforms();
+                            $(idModal).modal('hide');
+                        }
+                    });
+                }else{
+                    Swal.fire(
+                      'Ingrese todos los datos',
+                      'Porfavor ingresa todos los datos',
+                      'question'
+                    )
+                }
+        }
     </script>
 
     </html>

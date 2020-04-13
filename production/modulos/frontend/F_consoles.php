@@ -1,7 +1,7 @@
 <?php
     //Consultadondo los alimentos registrados
     require_once 'conexion.php';
-    $sql = "SELECT c.id, c.serial, c.id_platform FROM consoles as c INNER JOIN platforms as p ON c.id_platform = p.id";
+    $sql = "SELECT c.id, c.serial_console, c.id_platform FROM consoles as c INNER JOIN platforms as p ON c.id_platform = p.id";
     $result = $db->query($sql);
 /*
     if (mysqli_num_rows($result) > 0) {
