@@ -5,7 +5,6 @@
 	$result = $db->query($sql);
 
 	if ($result = $db->query($sql)) {
-	    
 		// $row['name']
 	    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 	    	echo "  

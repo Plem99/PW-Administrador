@@ -10,7 +10,7 @@
      $m = $todayh[mon];
      $y = $todayh[year];
 
-     $timeNow = date("H:i");
+     $timeNow = date("H:i:s");
 
     $idCosto;
 

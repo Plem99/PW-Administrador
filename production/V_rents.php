@@ -102,6 +102,10 @@
                                                         </table>
                                                     </div>
                                                 </div>
+
+
+                                            
+
                                             </div>
 
                                         </div>
@@ -189,6 +193,22 @@
                 }
             });
                 }
+
+
+    function finRenta() {
+        rentaV = $('#btnRentaID').val();
+
+                  $.ajax({
+                      url: './modulos/backend/B_updateHoraFin.php',
+                      type: 'POST',
+                      data:{
+                            idRenta: rentaV
+                          },
+                      success: function(data){
+                          //alert('nice');
+                      }
+                  });
+    }
 
 
         </script>

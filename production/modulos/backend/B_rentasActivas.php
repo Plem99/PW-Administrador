@@ -2,7 +2,7 @@
 
 <?php 
 	require_once 'conexion.php';
-	$sql = "SELECT CONCAT(G.name, ' ',G.last_name) Nombre, G.username, G.photo, G.coins, R.hour_init, R.hour_end, C.serial_console, P.name Consola, H.cost, H.cost_coin FROM rents R JOIN gamers G ON R.gamers_id = G.id JOIN consoles C ON R.id_console = C.id JOIN platforms P ON C.id_platform = P.id JOIN hourCosts H ON H.id_plataforma = P.id WHERE R.hour_end IS NULL";
+	$sql = "SELECT R.id, CONCAT(G.name, ' ',G.last_name) Nombre, G.username, G.photo, G.coins, R.hour_init, R.hour_end, C.serial_console, P.name Consola, H.cost, H.cost_coin FROM rents R JOIN gamers G ON R.gamers_id = G.id JOIN consoles C ON R.id_console = C.id JOIN platforms P ON C.id_platform = P.id JOIN hourCosts H ON H.id_plataforma = P.id WHERE R.hour_end IS NULL";
 	$result = $db->query($sql);
 
 	if ($result = $db->query($sql)) {
@@ -20,7 +20,8 @@
 					    <p class='card-text'>Consola: ". $row['serial_console'] ."</p>
 					    <p class='card-text'>Costo: ". $row['cost'] ."</p>
 					    <p class='card-text'>Costo en monedas: ". $row['cost_coin'] ."</p>
-					    <a href='' class='btn btn-primary'>Finalizar renta</a>
+					    <button onclick='finRenta()' id='btnRentaID' class='btn btn-primary' value='". $row['id'] ."' data-toggle='modal' data-target='#modalFinalizarRenta' >Finalizar hora</button>
+
 					  </div>
 					</div>";
 	    }
@@ -31,8 +32,5 @@
 
 	
  ?>
-
-
- 
 
 
