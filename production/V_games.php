@@ -50,7 +50,7 @@
                                         <div class="x_title">
                                             <h2> Video Juegos</h2>
                                             <ul class="nav navbar-right panel_toolbox">
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
+                                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModalLong">
                                                     Registrar Video Juegos
                                                 </button>
                                                 <!-- Modal -->
