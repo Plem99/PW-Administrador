@@ -39,9 +39,9 @@
                                                 <i class='fa fa-exclamation-circle'></i> <label for="tipoUsuario">Tipo de Usuario* :</label>
                                                 <div class="radio" >
                                                     <label>
-                                                      <input type="radio" class="flat" name="adminGamerRadio" checked="checked" value="0"> Administrador
+                                                      <input type="radio" class="flat" name="adminGamerRadio" value="0"> Administrador
                                                     
-                                                      <input type="radio" class="flat" name="adminGamerRadio" value="1"> Gamer
+                                                      <input type="radio" class="flat" name="adminGamerRadio" checked="checked"  value="1"> Gamer
                                                     </label>
                                                 </div>
                                             </div>

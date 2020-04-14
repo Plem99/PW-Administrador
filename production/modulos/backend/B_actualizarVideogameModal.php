@@ -1,6 +1,6 @@
 <?php
     require_once 'conexion.php';
-
+/*
     $id = $_POST['idV'];
     $sql = "SELECT * FROM videogames WHERE id='$id'";
     $result = $db->query($sql);
@@ -45,4 +45,5 @@
         echo "<h2 style='text-align: center; margin-top: 80px; font-size:24px'>No hay video juegos registrados</h2>";
    }
    $result->closeCursor();
+   */
 ?>

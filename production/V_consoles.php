@@ -53,7 +53,7 @@
                                             <!-- <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a></li> -->
                                             <!-- <li><a class="close-link"><i class="fa fa-close"></i></a></li> -->
                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
+                                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModalLong">
                                       Registrar Consola
                                     </button>
                                     <!-- Modal -->
@@ -87,15 +87,15 @@
                                             <!-- contenido de modal Registrar consola -->
                                           </div>
                                           <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarConsola">Cancelar</button>
-                                            <button type="button" onclick="agregarConsola()" class="btn btn-primary" id="guardarConsola">Guardar Registro</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelarConsola">Cancelar</button>
+                                            <button type="button" onclick="agregarConsola()" class="btn btn-success" id="guardarConsola">Guardar Registro</button>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
 
                                     <!-- Modal registro de plataforma -->
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalPlataforma">
+                                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalPlataforma">
                                       Registrar Plataforma
                                     </button>
                                     <!-- Modal -->
@@ -118,15 +118,15 @@
                                                   <div class="form-group">
 
                                                  <label for="file">Seleccionar imagen</label>
-                                                    <input id="nombreImg" type="file" name="file">
+                                                    <input id="imagenPlatform" type="file" name="FileImage">
                                                     <p class="help-block">Solo archivos jpg,jpeg,png and gif con un tamaño máximo de 1 MB.</p>
                                                   </div>
                                                 </form>
                                             <!-- contenido de modal Registrar consola -->
                                           </div>
                                           <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelarConsola">Cancelar</button>
-                                            <button onclick="agregarPlataforma()" type="button" class="btn btn-primary" id="guardarConsola">Guardar Registro</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelarConsola">Cancelar</button>
+                                            <button onclick="agregarPlataforma()" type="button" class="btn btn-success" id="guardarConsola">Guardar Registro</button>
                                           </div>
                                         </div>
                                       </div>
@@ -243,18 +243,40 @@
                 });
             }
         }
+        /*
+        var nombreImg;
+        $('#imagenPlatform').change(function(){    
+                //on change event  
+                nombreImg = new FormData();
+                if($(this).prop('files').length > 0)
+                {
+                    file = $(this).prop('files')[0];
+                    nombreImg.append("FileImage", file);
+                    alert(nombreImg);
+                }
+            });*/
         function agregarPlataforma(){
+            //var nombreImg = new FormData();
             var nombrePlatform = $('#nombrePlatform').val();
-            var nombreImg = $('#nombreImg').val().split('\\').pop();
-            if(nombrePlatform!='' && nombreImg!=''){
+            var nombreImagen = $('#imagenPlatform').val().split('\\').pop();
+            alert(nombreImagen);
+            //var nombreImg = $('#imagenPlatform').val().split('\\').pop();
+            
+            //alert("2: "+nombreImg);
+
+            if(nombrePlatform!='' && nombreImagen!=''){
                     $.ajax({
                         url: './modulos/backend/B_nuevaPlataforma.php',
+                        type: 'POST',
                         data: {
                             nombrePlatformV: nombrePlatform,
-                            nombreImgV: nombreImg
+                            //nombreImgV: nombreImg,
+                            nombreImagenV: nombreImagen
                             },
-                        type: 'POST',
-                        success: function () {
+                        //processData: false,
+                        //contentType: false,
+                        success: function (r) {
+                          alert(r);
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Plataforma Creada',
