@@ -15,8 +15,7 @@
 
         <form method="post" id="gandoresTorneo">        
 
-          <br> <br> <br> <br>
-              
+          <br><br><br><br>
           <label for="primerlugarP">Primer Lugar</label>
           <select id="primerlugarP" name="primerlugarP" class="custom-select custom-select-sm">
 
@@ -30,14 +29,12 @@
                 <?php //include "./modulos/backend/B_participants2Ganadores.php"?>
           </select>
 
-
-          <label for="tercerlugar">Tercer Lugar</label>
+          <label for="tercerlugarP">Tercer Lugar</label>
           <select id="tercerlugarP" name="tercerlugarP" class="custom-select custom-select-sm">
 
                 <?php //include "./modulos/backend/B_participants2Ganadores.php"?>
           </select>
         
-
         
 
         
