@@ -4,7 +4,7 @@
 
   $idTo = $_POST['IDTorneo'];
 
-  $sql = "SELECT positions, reward FROM rewards R JOIN tournaments T ON R.id_tournament = T.id WHERE T.id = $idTo";
+  $sql = "SELECT positions, reward FROM rewards R JOIN tournaments T ON R.id_tournament = T.id WHERE T.id = " . $idTo;
   $result = $db->query($sql);
 
   if ($result = $db->query($sql)) {

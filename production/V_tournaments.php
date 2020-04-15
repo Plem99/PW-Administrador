@@ -70,8 +70,15 @@
                                             </ul>
 
                                             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNuevoTorneo" onclick="getJuegos()" style="margin-bottom:10px;margin-top:10px; margin-left:25px;">Nuevo torneo</button>
-                                                        <!-- Modal para una nueva renta -->
+                                                        
+
+                                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalPremiosTorneo" onclick="getTorneos()" style="margin-bottom:10px;margin-top:10px; margin-left:10px;">Crear premios</button>
+
+                                                    <!-- Modal para nuevos torneos -->
                                                  <div id="nuevoTorneo"></div>
+
+                                                        <!-- Modal para nuevos premios -->
+                                                 <div id="premiosTorneo"></div>
 
                                                  <div id="ganadores"></div>
 
@@ -117,6 +124,26 @@
             });
         }
 
+        function getTorneos(){
+            $.ajax({
+                url: './modulos/backend/B_torneos2Premios.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#torneos').html(r);
+                }
+            });
+        }
+
+
+            $.ajax({
+                url: './modulos/frontend/F_insertPremioTorneo.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#premiosTorneo').html(r);
+                }
+            });
+
+
             $.ajax({
                 url: './modulos/frontend/F_asignarGanadores.php',
                 type: 'GET',
@@ -126,7 +153,7 @@
             });
 
             function asignarGanadores(IDTorneo) {
-                    
+                    alert(IDTorneo);
                 $.ajax({
                 url: './modulos/backend/B_premios2Ganadores.php',
                 type: 'POST',
@@ -322,6 +349,35 @@
                                 })      
                       }
                   });  
+            }
+
+
+            function setPremiosTorneo() {
+                pUnoV = $('#primerlugar').val();
+                pDosV = $('#segundolugar').val();
+                pTresV = $('#tercerlugar').val();
+                torneoV = $('#torneos').val();
+
+                $.ajax({
+
+                      url: './modulos/backend/B_insertPremiosTorneo.php',
+                      type: 'POST',
+                      data:{
+                            gUnoP: pUnoV,
+                            gDosP: pDosV,
+                            gTresP: pTresV,
+                            idT: torneoV
+                          },
+                      success: function(data){
+                          Swal.fire({
+                                  position: 'center',
+                                  icon: 'success',
+                                  title: 'Premios registrados',
+                                  showConfirmButton: false,
+                                  timer: 1500
+                                })      
+                      }
+                  });
             }
 
 
