@@ -11,37 +11,33 @@
       </div>
       <div class="modal-body">
 
-        <div id="premios"></div>
+        <div id="premiosModal"></div>
 
         <form method="post" id="gandoresTorneo">        
 
-          
-            <div class="form-group col-md-4">
-          <label for="primerlugar">Primer Lugar</label>
-          <select id="primerlugar" name="primerlugar" class="custom-select custom-select-sm">
+          <br> <br> <br> <br>
+              
+          <label for="primerlugarP">Primer Lugar</label>
+          <select id="primerlugarP" name="primerlugarP" class="custom-select custom-select-sm">
 
                 <?php //include "./modulos/backend/B_participants2Ganadores.php"?>
           </select>
-        </div>
 
 
-        <div class="form-group col-md-4">
-          <label for="segundolugar">Segundo Lugar</label>
-          <select id="segundolugar" name="segundolugar" class="custom-select custom-select-sm">
+          <label for="segundolugarP">Segundo Lugar</label>
+          <select id="segundolugarP" name="segundolugarP" class="custom-select custom-select-sm">
 
                 <?php //include "./modulos/backend/B_participants2Ganadores.php"?>
           </select>
-        </div>
 
 
-        <div class="form-group col-md-4">
           <label for="tercerlugar">Tercer Lugar</label>
-          <select id="tercerlugar" name="tercerlugar" class="custom-select custom-select-sm">
+          <select id="tercerlugarP" name="tercerlugarP" class="custom-select custom-select-sm">
 
                 <?php //include "./modulos/backend/B_participants2Ganadores.php"?>
           </select>
-        </div>
         
+
         
 
         

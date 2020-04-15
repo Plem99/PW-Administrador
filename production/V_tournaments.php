@@ -153,7 +153,7 @@
             });
 
             function asignarGanadores(IDTorneo) {
-                    alert(IDTorneo);
+                    // alert(IDTorneo);
                 $.ajax({
                 url: './modulos/backend/B_premios2Ganadores.php',
                 type: 'POST',
@@ -161,7 +161,7 @@
                         IDTorneo
                 },
                 success: function(r) {
-                    $('#premios').html(r);
+                    $('#premiosModal').html(r);
                     
                 }
                 });
@@ -174,7 +174,7 @@
                         IDTorneo
                 },
                 success: function(r) {
-                    $('#primerlugar').html(r);
+                    $('#primerlugarP').html(r);
                     
                 }
                 });
@@ -186,7 +186,7 @@
                         IDTorneo
                 },
                 success: function(r) {
-                    $('#segundolugar').html(r);
+                    $('#segundolugarP').html(r);
                     
                 }
                 });
@@ -200,7 +200,7 @@
                         IDTorneo
                 },
                 success: function(r) {
-                    $('#tercerlugar').html(r);
+                    $('#tercerlugarP').html(r);
                     
                 }
                 });
