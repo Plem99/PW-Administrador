@@ -11,7 +11,7 @@
 	    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 	    	echo "  <div class='card border-primary mb-3' style='max-width: 22rem; margin-left:45px;' >
 					  <div class='card-header'>". $row['username'] ."</div>
-					  <img class='card-img-top'  alt='Card image cap'>
+					  <img class='card-img-top' src='../../assets/img/profiles/img.jpg' alt='Card image cap'>
 					  <div class='card-body text-primary'>
 					    <h5 class='card-title'>". $row['Nombre'] ."</h5>
 					    <p class='card-text'>Monedas usuario: ". $row['coins'] ."</p>
