@@ -9,11 +9,13 @@
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <meta charset="UTF-8">
             <!-- Meta, title, CSS, favicons, etc. -->
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <script src="../vendors/jquery/dist/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <title>Torneos</title>
             <?php include "./includes/header.html" ?>
         </head>
@@ -63,29 +65,27 @@
                                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Proximos</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick="allTorunaments()">Todos</a>
+                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick="allTorunaments()">Anteriores</a>
                                                 </li>
                                             </ul>
+
+                                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNuevoTorneo" onclick="getJuegos()" style="margin-bottom:10px;margin-top:10px; margin-left:25px;">Nuevo torneo</button>
+                                                        <!-- Modal para una nueva renta -->
+                                                 <div id="nuevoTorneo"></div>
+
+                                                 <div id="ganadores"></div>
+
                                             <div class="tab-content" id="myTabContent">
                                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                                    <div class="row" id="ProximosTorneos">
-                                                        
-                                                        <!-- Cambiar para mi modulo de frontend Este es el basico-->
-                                                        <?php //include "./modulos/frontend/F_proxTournaments.php"?> 
-                                                    </div>
+                                                    <div class="row" id="proximosTorneos"></div>
                                                 </div>
                                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="row">
-                                                        <!-- Cambiar para mi modulo de frontend - Este es el de la tabla--> 
-                                                        <?php include "./modulos/frontend/F_tournaments.php"?>
+                                                        
+                                                        <?php include "./modulos/frontend/F_allTournaments.php"?>
                                                     </div>
                                                 </div>
-
-
-                                             
-
-
-                                            </div>
+                                           </div>
                                         </div>
                                     </div>
                                 </div>
@@ -117,22 +117,214 @@
             });
         }
 
-        // function getAllInfoTournament(){
-        //     $.ajax({
-        //         url: './modulos/backend/B_allInfoTournamentID.php',
-        //         type: 'GET',
-        //         success: function (r) {
-        //             $('#tablaTorneos').html(r);
-        //         }
-        //     });
-        // }
+            $.ajax({
+                url: './modulos/frontend/F_asignarGanadores.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#ganadores').html(r);
+                }
+            });
+
+            function asignarGanadores(IDTorneo) {
+                    
+                $.ajax({
+                url: './modulos/backend/B_premios2Ganadores.php',
+                type: 'POST',
+                data: {
+                        IDTorneo
+                },
+                success: function(r) {
+                    $('#premios').html(r);
+                    
+                }
+                });
+
+
+                 $.ajax({
+                url: './modulos/backend/B_participants2Ganadores.php',
+                type: 'POST',
+                data: {
+                        IDTorneo
+                },
+                success: function(r) {
+                    $('#primerlugar').html(r);
+                    
+                }
+                });
+
+                 $.ajax({
+                url: './modulos/backend/B_participants2Ganadores.php',
+                type: 'POST',
+                data: {
+                        IDTorneo
+                },
+                success: function(r) {
+                    $('#segundolugar').html(r);
+                    
+                }
+                });
+
+                 
+
+                 $.ajax({
+                url: './modulos/backend/B_participants2Ganadores.php',
+                type: 'POST',
+                data: {
+                        IDTorneo
+                },
+                success: function(r) {
+                    $('#tercerlugar').html(r);
+                    
+                }
+                });
+
+                 $.ajax({
+                url: './modulos/backend/B_agregarBotonGanadoresFin.php',
+                type: 'POST',
+                data: {
+                        IDTorneo
+                },
+                success: function(r) {
+                    $('#btnAgregar').html(r);
+                    
+                }
+                });
+
+
+            }
+
+
+            $.ajax({
+                url: './modulos/backend/B_proximosTorneos.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#proximosTorneos').html(r);
+                }
+            });
+
+
+            $.ajax({
+                url: './modulos/frontend/F_insertTorneo.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#nuevoTorneo').html(r);
+                }
+            });
+            
+
+            function getJuegos() {
+                $.ajax({
+                    url: './modulos/backend/B_juegos2Torneo.php',
+                    type: 'GET',
+                    success: function (r) {
+                        $('#videoJuegoTorneo').html(r);
+                    }
+                });
+            }  
+
+
+            function setDatosTorneo(){
+                tituloV = $('#tituloTorneo').val();
+                juegoV = $('#videoJuegoTorneo').val();
+                costoV = $('#costoTorneo').val();
+                fechaV = $('#fechaTorneo').val();
+                horaV = $('#horaTorneo').val();
+                horaV = horaV + ":00";
+                maxGamersV = $('#cantidadGamersTorneo').val();
+                descV = $('#descTorneo').val();
+                modalidadV = $('#modalidadTorneo').val();
+                presenciaV = $('#presenciaTorneo').val();
+                estatus = "Abierto";
+
+
+                // alert(tituloV + " " + juegoV + " " + costoV +" " + fechaV
+                //     + " " + horaV + " " + maxGamersV + " " + descV + " "
+                //     + modalidadV + " " + presenciaV + " " + estatus);
+
+                  $.ajax({
+                      url: './modulos/backend/B_insertTorneo.php',
+                      type: 'POST',
+                      data:{
+                            title: tituloV,
+                            game: juegoV,
+                            cost: costoV,
+                            dateP: fechaV,
+                            hourP: horaV,
+                            maxGamer: maxGamersV,
+                            desc: descV,
+                            modality: modalidadV,
+                            present: presenciaV,
+                            status: estatus
+                          },
+                      success: function(data){
+                          Swal.fire({
+                                  position: 'center',
+                                  icon: 'success',
+                                  title: 'Torneo registrado',
+                                  showConfirmButton: false,
+                                  timer: 1500
+                                })
+
+                          
+                      }
+                  });  
+            }
+
+            function setCancelarTorneo() {
+                idV = $('#btnCancelT').val();
+
+
+                // alert(idV);
+
+                  $.ajax({
+                      url: './modulos/backend/B_updateCancelarTorneo.php',
+                      type: 'POST',
+                      data:{
+                            idT: idV
+                          },
+                      success: function(data){
+                          Swal.fire({
+                                  position: 'center',
+                                  icon: 'success',
+                                  title: 'Torneo cacelado',
+                                  showConfirmButton: false,
+                                  timer: 1500
+                                })
+
+                          
+                      }
+                  });  
+            }
+
+
+            function setGanadores(idTorneoV) {
+                gUnoV = $('#primerlugar').val();
+                gDosV = $('#segundolugar').val();
+                gTresV = $('#tercerlugar').val();
+
+                $.ajax({
+
+                      url: './modulos/backend/B_updateGanadoresTorneo.php',
+                      type: 'POST',
+                      data:{
+                            gUnoP: gUnoV,
+                            gDosP: gDosV,
+                            gTresP: gTresV,
+                            idT: idTorneoV
+                          },
+                      success: function(data){
+                          Swal.fire({
+                                  position: 'center',
+                                  icon: 'success',
+                                  title: 'Torneo registrado',
+                                  showConfirmButton: false,
+                                  timer: 1500
+                                })      
+                      }
+                  });  
+            }
 
 
         </script>
 
     </html>
-    <?php
-  //}else{
-  //  header("Location: ../index.php");
-  //}
- ?>

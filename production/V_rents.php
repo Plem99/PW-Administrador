@@ -10,6 +10,7 @@
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <script src="../vendors/jquery/dist/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <title>Rentas</title>
             <?php include "./includes/header.html" ?>
         </head>
@@ -63,8 +64,11 @@
                                                     <a class="nav-link" id="todas-tab" data-toggle="tab" href="#todas" role="tab" aria-controls="todas" aria-selected="false" onclick="getTodasRentas()">Todas las rentas</a>
                                                 </li>
                                             </ul>
-                                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNuevaRenta" onclick="getDatosToModal()">Nueva renta</button>
+                                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalNuevaRenta" onclick="getDatosToModal()" style="margin-bottom:10px; margin-top: 10px; margin-left: 25px;">Nueva renta</button>
+                                                        <!-- Modal para una nueva renta -->
                                                  <div id="nuevaRenta"></div>
+
+
                                             <div class="tab-content" id="myTabContent">
                                                 <div class="tab-pane fade show active" id="enCurso" role="tabpanel" aria-labelledby="enCurso-tab">
                                                     <div class="row" id="rentasActivas">
@@ -176,11 +180,16 @@
                             idConsola: consolaV,
                             idGamer: gamerV
                           },
-                      success: function(data){
-                          alert('nice');
+                      success: function(){
+                          Swal.fire({
+                                  position: 'center',
+                                  icon: 'success',
+                                  title: 'Renta registrada',
+                                  showConfirmButton: false,
+                                  timer: 1500
+                                })
                       }
-                  });
-              
+                  });  
             }
 
 
@@ -205,7 +214,13 @@
                             idRenta: rentaV
                           },
                       success: function(data){
-                          //alert('nice');
+                          Swal.fire({
+                              position: 'center',
+                              icon: 'success',
+                              title: 'Renta finalizada',
+                              showConfirmButton: false,
+                              timer: 1500
+                            })
                       }
                   });
     }

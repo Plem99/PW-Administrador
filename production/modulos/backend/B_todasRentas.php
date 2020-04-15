@@ -21,7 +21,7 @@
 			<td>". $row['type'] ."</td>		
 			<td>". $row['total'] ."</td>
 
-			</td>";
+			</tr>";
 	    }
 	} else {
 	    echo "0 results";
