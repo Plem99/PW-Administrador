@@ -68,13 +68,13 @@
 
                                             <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Venta</a>
+                                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" onclick="registroVentas()" aria-selected="true">Venta</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#table" role="tab" aria-controls="profile" aria-selected="false" onclick="tablaProductos()">Productos</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#new" role="tab" aria-controls="profile" aria-selected="false">Registro de ventas</a>
+                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#new" role="tab" aria-controls="profile" aria-selected="false" onclick="verGamers();verProductos();">Registro de ventas</a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
@@ -121,44 +121,169 @@
             }
         });
 
+        function registroVentas(){
+            $.ajax({
+                url: './modulos/backend/B_registroVentas.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#registroVentas').html(r);
+                }
+            });
+        }
+        function cambio(){
+            console.log("ojo");
+            var pagas = $('#pagas').val();
+            var costo = $('#costo').val();
+            $.ajax({
+                url: './modulos/backend/B_calCambioProducto.php',
+                type: 'POST',
+                data:{
+                    pagasV: pagas,
+                    costoV: costo
+                },
+                success: function (r) {
+                    $('#cambio').val(r);
+                }
+            });
+        }
+        function calcularCosto(){
+            cambio();
+            var id = $('#producto').val();
+            $.ajax({
+                url: './modulos/backend/B_calCostoProducto.php',
+                type: 'POST',
+                data:{
+                    idProducto:id
+                },
+                success: function (r) {
+                    $('#costo').val(r);
+                }
+            });
+        }
+        function verGamers(){
+            $.ajax({
+                url: './modulos/backend/B_listaGamers.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#gamer').html(r);
+                }
+            });
+        }
+        function verProductos(){
+            $.ajax({
+                url: './modulos/backend/B_listaProductos.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#producto').html(r);
+                }
+            });
+        }
         function tablaProductos(){
-        $.ajax({
-            url: './modulos/backend/B_tablaProductos.php',
-            type: 'GET',
-            success: function (r) {
-                $('#tablaProductos').html(r);
+            $.ajax({
+                url: './modulos/backend/B_tablaProductos.php',
+                type: 'GET',
+                success: function (r) {
+                    $('#tablaProductos').html(r);
+                }
+            });
+        }
+        function registrarVenta(){
+            var gamer = $('#gamer').val();
+            var producto = $('#producto').val();
+            var costo = $('#costo').val();
+            var pagas = $('#pagas').val();
+            var cambio = $('#cambio').val();
+            /*alert(gamer);
+            alert(producto);
+            alert(costo);
+            alert(pagas);
+            alert(cambio);*/
+            //alert(cambio);
+            var val;
+            if(cambio=='Necesitas mas dinero'){
+                val=1;
+                //alert('Necesitas mas dinero');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Error',
+                    text: 'Necesitas mas dinero'
+                });
+            }else{
+                val=2;
             }
-        });
+            
+            if(val==2 && gamer!='' && producto!='' && costo!='' && pagas!='' && cambio!=''){
+                $.ajax({
+                    url: './modulos/backend/B_registrarVenta.php',
+                    type: 'POST',
+                    data:{  
+                        gamerV: gamer,
+                        productoV: producto,
+                        costoV: costo,
+                        pagasV: pagas,
+                        cambioV: cambio
+                    },
+                    success: function(r){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Venta Creado',
+                            text: 'Venta Creado Correctamente.'
+                        });
+
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Error',
+                            text: 'No se pudo crear la venta'
+                        });
+                    }
+                });
+            }else{
+                    Swal.fire(
+                      'Ingrese todos los datos',
+                      'Porfavor ingresa todos los datos',
+                      'question'
+                    )
+                }
         }
 
         function registrarProducto(){
             var nombreP = $('#nombreProducto').val();
             var costoP = $('#costoProducto').val();
             var monedasP = $('#monedasProducto').val();
-            $.ajax({
-                url: './modulos/backend/B_registrarProducto.php',
-                type: 'POST',
-                data:{  nombre: nombreP,
-                        costo: costoP,
-                        monedas: monedasP},
-                success: function(r){
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Producto Creado',
-                        text: 'Producto Creado Correctamente.'
-                    });
-                    tablaProductos();
-                    $('#registrarProducto').modal('hide');
+            if(nombreP!='' && costoP!='' && monedasP!=''){
+                $.ajax({
+                    url: './modulos/backend/B_registrarProducto.php',
+                    type: 'POST',
+                    data:{  nombre: nombreP,
+                            costo: costoP,
+                            monedas: monedasP},
+                    success: function(r){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Producto Creado',
+                            text: 'Producto Creado Correctamente.'
+                        });
+                        tablaProductos();
+                        $('#registrarProducto').modal('hide');
 
-                },
-                error: function () {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Error',
-                        text: 'No se pudo crear el producto'
-                    });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Error',
+                            text: 'No se pudo crear el producto'
+                        });
+                    }
+                });
+            }else{
+                    Swal.fire(
+                      'Ingrese todos los datos',
+                      'Porfavor ingresa todos los datos',
+                      'question'
+                    )
                 }
-            })
         }
 
         function btnEliminarProducto(id){
@@ -208,7 +333,7 @@
 
         var idmonedasProducto = '#monedasProducto' + id;
         var monedasProducto = $(idmonedasProducto).val();
-        alert(idModal);
+        //alert(idModal);
         if(nombreProducto != '' && costoProducto != '' && monedasProducto != ''){
             $.ajax({
                 url: './modulos/backend/B_actualizarProducto.php',

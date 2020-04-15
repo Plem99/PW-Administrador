@@ -1,6 +1,6 @@
 <div class="x_panel">
     <div class="x_title">
-        <h2>Video Juegos</h2>
+        <h2>Ventas</h2>
 
         <div class="clearfix"></div>
     </div>
@@ -9,17 +9,17 @@
             <div class="col-sm-12">
                 <div class="card-box table-responsive">
                     <p class="text-muted font-13 m-b-30">
-                        Todos los video juegos
+                        Todas las ventas
                     </p>
                     <table id="datatable-buttons" class="table table-striped table-bordered" >
                         <thead>
                             <tr>
-                                <td>Gamer</td>
-                                <td>Producto</td>
-                                <td>Total</td>
-                                <td>Pago</td>
-                                <td>Cambio</td>
-                                <td>Fecha</td>
+                                <th>Gamer</th>
+                                <th>Producto</th>
+                                <th>Total</th>
+                                <th>Pago</th>
+                                <th>Cambio</th>
+                                <th>Fecha</th>
                             </tr>
                         </thead>
 
