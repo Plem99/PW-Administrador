@@ -1,5 +1,5 @@
 <?php
-    //Consultadondo los alimentos registrados
+    
     require_once 'conexion.php';
     $sql = "SELECT * FROM platforms";
     $result = $db->query($sql);
@@ -12,7 +12,7 @@
                                 <div class='modal-dialog' role='document'>
                                   <div class='modal-content'>
                                         <div class='modal-header'>
-                                        <h5 class='modal-title' id='exampleModalLongTitle'>Actualizar Video Juegos</h5>
+                                        <h5 class='modal-title' id='exampleModalLongTitle'>Actualizar Plataforma</h5>
                                         <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                                           <span aria-hidden='true'>&times;</span>
                                           </button>
@@ -47,7 +47,7 @@
                             ".$row['name']."
                           </p>
                           <div class='tools tools-bottom'>
-                            <button id='btnActualizarV' data-toggle='modal' data-target='#actualizarGame".$valor[$i]."' onclick='btnActualizarPlataforma(".$valor[$i].")'><i class='fa fa-pencil'></i></button>
+                            <button id='btnActualizarV' data-toggle='modal' data-target='#actualizarPlataforma".$valor[$i]."' onclick='btnActualizarPlataforma(".$valor[$i].")'><i class='fa fa-pencil'></i></button>
                             <button id='btnEliminarPlataforma' href='' onclick='btnEliminarPlataforma(".$valor[$i].")'><i class='fa fa-times'></i></button>
                           </div>
                         </div>

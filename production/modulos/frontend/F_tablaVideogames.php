@@ -21,7 +21,7 @@
                         </thead>
 
                         <tbody id="tablaVideogames">
-                            <?php //include "../production/modulos/backend/B_tablaGamers.php" ?>
+                            
                         </tbody>
                     </table>
                 </div>

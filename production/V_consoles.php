@@ -50,8 +50,14 @@
                                         <h2>Consolas y Plataformas</h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                             
-                                            <!-- <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a></li> -->
-                                            <!-- <li><a class="close-link"><i class="fa fa-close"></i></a></li> -->
+
+                                  <!--<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#juegoconsole">
+                                      Modal de Juego en consola
+                                  </button>-->
+
+
+
+
                                    <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModalLong">
                                       Registrar Consola
@@ -175,6 +181,7 @@
             </div>
         </div>
         <?php include "./includes/scripts.html" ?>
+        <?php include "./modulos/frontend/PruebaModal.php"?>
     </body>
     <script>
         $.ajax({
@@ -209,6 +216,106 @@
               }
           });
         }
+        function listaVideogamesTableInsert(idC){
+          var idVideogame = '#videogames' + idC;
+          var Videogameid = $(idVideogame).val();
+          
+          $.ajax({
+              url: 'modulos/backend/B_listTablaVideogamesInsert.php',
+              type: 'POST',
+              data:{
+                idConsola: idC,
+                idVideogame: Videogameid
+              },
+              success: function (r) {
+                listaVideogamesTable(idC);
+              }
+          });
+        }
+        function listaVideogamesTableDelete(idC, idV){
+
+          $.ajax({
+              url: 'modulos/backend/B_listTablaVideogamesDelete.php',
+              type: 'POST',
+              data:{
+                idConsola: idC,
+                idVideogame: idV
+              },
+              success: function (r) {
+                listaVideogamesTable(idC);
+              }
+          });
+          
+        }
+        function listaVideogamesTable(id){
+            var idTable ='#tablaVideogamesConsole' + id;
+                $.ajax({
+                    url: './modulos/backend/B_listTablaVideogames.php',
+                    type: 'POST',
+                    data: {
+                      idV: id
+                    },
+                    success: function (r) {
+                        $(idTable).html(r);
+                    }
+                });
+            }
+        function listaVideogames(id){
+          var idSelect ='#videogames' + id;
+          $.ajax({
+              url: 'modulos/backend/B_listaVideogames.php',
+              type: 'GET',
+              success: function (r) {
+                  $(idSelect).html(r);
+              }
+          });
+        }
+        function btnVerConsola(id){
+          var idModal = '#juegoconsole' + id;
+          $(idModal).modal('show');
+        }
+        function btnActualizarConsola(id){
+                var idModal = '#modalActualizarConsola' + id;
+                $(idModal).modal('show');
+            }
+            function actualizarConsola(id){
+                var idModal = '#modalActualizarConsola' + id;
+                var idnumConsola = '#numConsola' + id;
+                var numConsola = $(idnumConsola).val();
+                var idserial = '#serial' + id;
+                var serial = $(idserial).val();
+                var idplataforma = '#plataforma' + id;
+                var plataforma = $(idplataforma).val();
+                var idVal = id;
+
+                if(numConsola != '' && serial != '' && plataforma != ''){
+                    $.ajax({
+                        url: './modulos/backend/B_actualizarConsola.php',
+                        data: {
+                            idV: idVal,
+                            numConsolaV: numConsola,
+                            serialV: serial,
+                            plataformaV: plataforma
+                        },
+                        type: 'POST',
+                        success: function () {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Consola Actualizada',
+                                text: 'Consola Actualizada Correctamente.'
+                            });
+                            tablaConsoles();
+                            $(idModal).modal('hide');
+                        }
+                    });
+                }else{
+                    Swal.fire(
+                      'Ingrese todos los datos',
+                      'Porfavor ingresa todos los datos',
+                      'question'
+                    )
+                }
+            }
         function agregarConsola(){
             var datos = false;
             var numConsola = $('#numConsola').val();

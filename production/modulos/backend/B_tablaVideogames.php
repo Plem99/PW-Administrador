@@ -41,14 +41,14 @@
                                                           </div>";
 	        echo "<tr>
 		        	<td>".$row["title"]."</td>
-		        	<td width='60%'><p style='text-align: center; ''><img style='width: 30%; border-radius: 7px;' src='../../assets/img/videogames/".$row['image']."' alt='image' /> <p></td>
+		        	<td width='60%'><p style='text-align: center; '><img style='width: 30%; border-radius: 7px;' src='../../assets/img/videogames/".$row['image']."' alt='image' /> <p></td>
 		        	<td>".
 		        	"<div style='display:flex;'>".
 			        	"<button id='btnActualizarT' data-toggle='modal' data-target='#actualizarGameT".$valor[$i]."' onclick='btnActualizarT(".$valor[$i].")' class='btn  btn-success' >"."<i class='fa fa-pencil'></i>". " Editar".
 			        	"</button>".
 			        	"<button id='btnEliminar' onclick='btnEliminar(".$valor[$i].")' class='btn  btn-danger btnEliminar' >"."<i class='fa fa-times'></i>". " Eliminar".
 			        	"</button>".
-			        "<div>".
+			        "</div>".
 		        	"</td>
 
 	        	</tr>";
